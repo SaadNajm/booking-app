@@ -1,0 +1,12 @@
+package helper
+import "strings"
+
+
+func ValidateUserInput(firstName string, lastName string, email string, userTickets uint,remainingTickets uint) (bool, bool, bool) {
+	var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2
+	var isValidEmail bool = strings.Contains(email, "@")
+	var isValidTicketNumber bool = userTickets <= remainingTickets && userTickets > 0
+
+	return isValidName, isValidEmail, isValidTicketNumber
+
+}
