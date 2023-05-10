@@ -31,7 +31,15 @@ func main() {
 
 		fmt.Println("Enter number of tickets: ")
 		fmt.Scan(&userTickets)
-		if userTickets <= remainingTickets {
+
+		var isValidName bool=len(firstName)>=2 &&len(lastName)>=2
+		var isValidEmail bool=strings.Contains(email,"@")
+		var isValidTicketNumber bool=userTickets <= remainingTickets && userTickets>0
+
+
+
+
+		if isValidEmail&&isValidName&&isValidTicketNumber {
 			remainingTickets = remainingTickets - userTickets
 			bookings = append(bookings, firstName+" "+lastName)
 
@@ -53,8 +61,16 @@ func main() {
 			}
 
 		} else {
-			fmt.Printf("We only have %v tickets remaining, so you can't book %v tickets\n", remainingTickets, userTickets)
-			continue
+			if !isValidName {
+				fmt.Println("first name or last name you entered is too short")
+
+			}
+			if !isValidEmail{
+				fmt.Println("email adress you entered doesn't contain @ sign")
+			}
+			if !isValidTicketNumber{
+				fmt.Println("number of tickets you entered is invalid")
+			}
 		}
 
 	}
